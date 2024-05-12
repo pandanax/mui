@@ -9,23 +9,17 @@ COPY package*.json ./
 
 # Устанавливаем зависимости
 RUN npm install
-RUN npm install react react-dom
-
 
 # Копируем все файлы приложения внутрь контейнера
 COPY ./src ./src
-COPY ./test ./test
+COPY ./public ./public
 COPY ./.eslintrc.js ./.eslintrc.js
 COPY ./.prettierrc ./.prettierrc
-COPY ./nest-cli.json ./nest-cli.json
 COPY ./README.md ./README.md
-COPY ./tsconfig.build.json ./tsconfig.build.json
 COPY ./tsconfig.json ./tsconfig.json
 
 # Экспортируем порт, который будет использоваться для приложения
-EXPOSE 8080
-
-RUN npm run build
+EXPOSE 3000
 
 # Команда, которая будет исполняться при запуске контейнера
-CMD ["npm", "run", "start:debug"]
+CMD ["npm", "run", "dev"]
